@@ -1,4 +1,4 @@
-﻿namespace AzureVideoLibraryPrototype.Controllers
+namespace AzureVideoLibraryPrototype.Models
 {
     public class ViewDataUploadFilesResult
     {

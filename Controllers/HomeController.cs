@@ -25,6 +25,17 @@ namespace AzureVideoLibraryPrototype.Controllers
             return View();
         }
 
+        public ActionResult Library()
+        {
+            var videos = from v in videoRepository.GetAll()
+                         select new VideoItem()
+                                {
+                                    Title = v.Name,
+                                    VideoUrl = Url.Content("~/Files/echo-hereweare.mp4")
+                                };
+            return View(new VideoLibraryModel { Videos = videos.ToList() });
+        }
+
         private string StorageRoot { get { return Path.Combine(Server.MapPath("~/Files")); } }
 
         [HttpGet]

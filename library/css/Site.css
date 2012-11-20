@@ -105,6 +105,7 @@ header h1, #header h1 {
     border-radius: 4px 0 0 0;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
+    clear: both;
 }
 
 footer, 
@@ -307,4 +308,49 @@ div#title {
 {
     max-width: 80px;
     max-height: 80px;
+}
+
+
+
+/* Video Wall */
+#wrapper {
+    clear: both;
+    display: block;
+}
+
+.video-wall-page {
+    width: 988px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.video-wall-page ul {
+    list-style: none;
+}
+
+.search-result {
+    float: left;
+    margin: 0 9px 18px 0;
+    width: 240px;
+}
+
+.search-result img {
+    border: 1px solid #3D3D3D;
+    display: block;
+    height: 177px;
+    width: 236px;
+}
+
+.single-video-play-button {
+    position: relative;
+    text-indent: -9999em;
+}
+
+.search-result h3 {
+    position: relative;
+    left: 3px;
+    text-align: left;
+    top: -13px;
+    text-transform: uppercase;
+    font-size: 1em;
 }

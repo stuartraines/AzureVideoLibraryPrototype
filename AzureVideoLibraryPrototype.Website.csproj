@@ -111,12 +111,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ViewDataUploadFilesResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Models\UploadVideoModel.cs" />
+    <Compile Include="Models\VideoItem.cs" />
+    <Compile Include="Models\VideoLibraryModel.cs" />
+    <Compile Include="Models\ViewDataUploadFilesResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,8 +126,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="library\css\bigplay.png" />
+    <Content Include="library\css\blank.gif" />
     <Content Include="library\css\bootstrap-image-gallery.min.css" />
+    <Content Include="library\css\controls.png" />
+    <Content Include="library\css\fancybox_loading.gif" />
+    <Content Include="library\css\fancybox_overlay.png" />
+    <Content Include="library\css\fancybox_sprite.png" />
+    <Content Include="library\css\jquery.fancybox.css" />
     <Content Include="library\css\jquery.fileupload-ui.css" />
+    <Content Include="library\css\loading.gif" />
+    <Content Include="library\css\mediaelementplayer.min.css" />
     <Content Include="library\images\glyphicons-halflings-white.png" />
     <Content Include="library\images\loading.gif" />
     <Content Include="library\images\progressbar.gif" />
@@ -135,6 +146,7 @@
     <Content Include="library\js\bootstrap.min.js" />
     <Content Include="library\css\Site.css" />
     <Content Include="library\js\canvas-to-blob.min.js" />
+    <Content Include="library\js\jquery.fancybox.pack.js" />
     <Content Include="library\js\jquery.fileupload-ip.js" />
     <Content Include="library\js\jquery.fileupload-ui.js" />
     <Content Include="library\js\jquery.fileupload.js" />
@@ -142,6 +154,7 @@
     <Content Include="library\js\load-image.min.js" />
     <Content Include="library\js\locale.js" />
     <Content Include="library\js\main.js" />
+    <Content Include="library\js\mediaelement-and-player.min.js" />
     <Content Include="library\js\tmpl.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
