@@ -19,8 +19,22 @@
                     <li class="search-result">
                         <a href="#video_@i" title="@Model.Videos[i].Title">                            
                             <img src="@Model.Videos[i].ThumbnailUrl" alt="@Model.Videos[i].Title"/>
-                            <div id="video_@i" style="display:none; overflow: hidden;">
-                                <video type="video/mp4" controls="controls" preload="none" src="@Model.Videos[i].VideoUrl"></video>
+                            <div id="video_@i" style="display:none; overflow: hidden; width:600px; height:400px;">
+                                <div id="silverlightControlHost" style="display: block; width: 100%; height: 100%;">
+                                    <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
+		                              <param name="source" value="@Url.Content("~/Content/SmoothStreamingPlayer.xap")"/>
+		                              <param name="onError" value="onSilverlightError" />
+		                              <param name="background" value="white" />
+		                              <param name="minRuntimeVersion" value="5.0.61118.0" />
+		                              <param name="autoUpgrade" value="true" />
+		                              <param name="enableGPUAcceleration" value="true" />
+		                              <param name="InitParams" value="selectedcaptionstream=textstream_eng,mediaurl=@Model.Videos[i].VideoUrl" />
+		                              <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=4.0.50401.0" style="text-decoration:none">
+ 			                              <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
+		                              </a>
+	                                </object><iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
+                                </div>                                
+                                <!--<video type="video/mp4" controls="controls" preload="none" src="@Model.Videos[i].VideoUrl"></video>-->
                             </div>
                             <div class="single-video-play-button">play</div>
                         </a>

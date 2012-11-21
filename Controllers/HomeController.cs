@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AzureVideoLibraryPrototype.Core;
+using AzureVideoLibraryPrototype.Core.AccessPolicies;
 using AzureVideoLibraryPrototype.Core.Interfaces;
 using AzureVideoLibraryPrototype.Models;
 
@@ -13,11 +14,13 @@ namespace AzureVideoLibraryPrototype.Controllers
     public class HomeController : Controller
     {
         private readonly IVideoRepository videoRepository;
+        private readonly ILocatorService locatorService;
 
         public HomeController()
         {
             //TODO: Implement IoC Container
-            this.videoRepository = new AzureVideoRepository(new VideoLibraryConfigurationManager(), new AzureMediaServicesVideoConverter());
+            this.locatorService = new MediaLocatorService(new VideoLibraryConfigurationManager(), new OneDayReadOnlyAccessPolicyFactory());
+            this.videoRepository = new AzureVideoRepository(new VideoLibraryConfigurationManager(), new AzureMediaServicesMediaFacade(new VideoLibraryConfigurationManager(), new ThumbnailService(new VideoLibraryConfigurationManager())));
         }
 
         public ActionResult Index()
@@ -28,12 +31,21 @@ namespace AzureVideoLibraryPrototype.Controllers
         public ActionResult Library()
         {
             var videos = from v in videoRepository.GetAll()
+                         let thumbnailLocation = locatorService.GetAssetThumbnailLocationUrl(v)
                          select new VideoItem()
                                 {
-                                    Title = v.Name,
-                                    VideoUrl = Url.Content("~/Files/echo-hereweare.mp4")
+                                    Title = v.Name,                                    
+                                    VideoUrl = locatorService.GetAssetLocationUrl(v),
+                                    ThumbnailUrl = String.IsNullOrEmpty(thumbnailLocation) ? string.Empty : Url.Content(thumbnailLocation)
                                 };
             return View(new VideoLibraryModel { Videos = videos.ToList() });
+        }
+
+        public ActionResult DeleteAll()
+        {
+            videoRepository.DeleteAll();
+
+            return View("Index");
         }
 
         private string StorageRoot { get { return Path.Combine(Server.MapPath("~/Files")); } }
